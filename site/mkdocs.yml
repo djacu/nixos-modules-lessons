@@ -1,0 +1,62 @@
+site_name: NixOS Modules Lessons
+site_url: https://module-lessons.nix.xn--q9jyb4c
+repo_url: https://github.com/djacu/nixos-modules-lessons
+repo_name: djacu/nixos-modules-lessons
+edit_uri: tree/main/site
+
+nav:
+  - Home: index.md
+
+theme:
+  name: material
+  features:
+    - content.action.view
+    - content.code.copy
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+  palette:
+  # Palette toggle for automatic mode
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/brightness-auto
+      name: Switch to light mode
+  # Palette toggle for light mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  # Palette toggle for dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    toggle:
+      icon: material/brightness-4
+      name: Switch to system preference
+
+plugins: 
+  - macros
+  - social:
+      cards_layout_options:
+        font_family: Roboto
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+  - toc:
+      permalink: true
+
