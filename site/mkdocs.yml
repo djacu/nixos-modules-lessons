@@ -6,6 +6,9 @@ edit_uri: tree/main/site
 
 nav:
   - Home: index.md
+  - Lessons:
+    - Types:
+      - lessons/010-basic-types/lesson.md
 
 theme:
   name: material

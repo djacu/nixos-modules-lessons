@@ -22,10 +22,14 @@
         mkPoetryEnv
         ;
 
+      lessonsLib = import ./lib/lessons.nix {inherit self pkgs lib;};
+
       site-env = mkPoetryEnv {
         projectDir = self + /site;
         python = pkgs.python311;
       };
+
+      lessonsDocumentation = lessonsLib.generateLessonsDocumentation {lessonsPath = ./lessons;};
 
       site = pkgs.stdenvNoCC.mkDerivation {
         name = "modules-lessons-site";
@@ -33,6 +37,7 @@
         nativeBuildInputs = [site-env];
 
         buildPhase = ''
+          cp -r ${lessonsDocumentation}/* ./docs/
           mkdir -p .cache/plugin/social
           cp ${pkgs.roboto}/share/fonts/truetype/Roboto-* .cache/plugin/social/
           mkdocs build --site-dir dist
@@ -63,8 +68,16 @@
         // {
           inherit
             site
+            lessonsDocumentation
             ;
         };
+
+      apps = {
+        copyLessonsToSite = {
+          type = "app";
+          program = "${lessonsLib.copyLessonsToSite}/bin/copy-lessons-to-site";
+        };
+      };
 
       checks =
         {}
@@ -73,5 +86,7 @@
             site
             ;
         };
+
+      inherit lessonsLib;
     });
 }

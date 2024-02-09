@@ -13,6 +13,8 @@ Notice in the [config][config] file, we have declared values for all these optio
 
 If you execute the run file (`./run`), you should see an output that matches what we have configured.
 
+[//]: # (evaluatedLesson)
+
 [nixos-manual-basic-types]: https://nixos.org/manual/nixos/stable/#sec-option-types
 [options]: ./options.nix
 [config]: ./config.nix
