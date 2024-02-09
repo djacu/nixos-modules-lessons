@@ -25,7 +25,7 @@ jobs:
         with:
           name: djacu-nixos-modules-lessons
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-          installCommand: '/usr/bin/bash -c nix-env --verbose -j8 -iA cachix -f https://cachix.org/api/v1/install'
+          installCommand: 'nix-env --verbose -j8 -iA cachix -f https://cachix.org/api/v1/install'
 
       - name: Build Site
         run: |
