@@ -1,0 +1,9 @@
+### Nix ###
+result
+
+### Mkdocs ###
+site/.cache
+
+### Site ###
+# Lessons are built during nix build
+site/docs/lessons
