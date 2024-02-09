@@ -14,6 +14,21 @@
     )
   );
 
+  getFileExtension = path: (
+    lib.concatStringsSep
+    "."
+    (
+      builtins.tail (
+        lib.splitString
+        "."
+        (
+          builtins.baseNameOf
+          path
+        )
+      )
+    )
+  );
+
   createLessonMetadata = name: value: let
     lessonPath = value;
     rawLesson = builtins.readFile (lib.path.append lessonPath "lesson.md");
@@ -35,8 +50,10 @@
     textToSubstitute = (
       builtins.map
       (
-        file: ''
-          ```
+        file: let
+          fileExtension = getFileExtension file;
+        in ''
+          ``` ${fileExtension} title="${file}"
           ${
             builtins.readFile
             (
