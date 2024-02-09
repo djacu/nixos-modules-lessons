@@ -7,6 +7,8 @@ edit_uri: tree/main/site
 nav:
   - Home: index.md
   - Lessons:
+    - Getting Started:
+      - lessons/001-a-module/lesson.md
     - Types:
       - lessons/010-basic-types/lesson.md
 
