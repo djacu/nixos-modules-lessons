@@ -1,5 +1,13 @@
 {
-  description = "LaTeX Document Demo";
+  description = "A collection of lessons for learning NixOS Modules.";
+
+  nixConfig.extra-substituters = [
+    "https://djacu-nixos-modules-lessons.cachix.org"
+  ];
+  nixConfig.extra-trusted-public-keys = [
+    "djacu-nixos-modules-lessons.cachix.org-1:xvTRAYg4Wh6fagK80iDXwFDj5zL0uzSSfUr2VfesA/k="
+  ];
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
