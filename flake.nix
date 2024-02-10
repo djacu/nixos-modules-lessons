@@ -37,7 +37,12 @@
         python = pkgs.python311;
       };
 
-      lessonsDocumentation = lessonsLib.generateLessonsDocumentation {lessonsPath = ./lessons;};
+      lessonsDocumentation =
+        lessonsLib.generateLessonsDocumentation
+        {
+          lessonsPath = ./lessons;
+          lessonFile = "lesson.md";
+        };
 
       site = pkgs.stdenvNoCC.mkDerivation {
         name = "modules-lessons-site";
