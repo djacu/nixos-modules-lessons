@@ -26,6 +26,6 @@ In the `run.sh` file, we evaluate the `eval.nix` file and have it print out a ni
 
 If you execute the run file (`./run.sh`), you should see an output that matches what we have configured.
 
-[//]: # (evaluatedLesson)
+[//]: # (self.eval)
 
 [nixos-manual-basic-types]: https://nixos.org/manual/nixos/stable/#sec-option-types

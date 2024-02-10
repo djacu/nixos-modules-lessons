@@ -1,6 +1,4 @@
-let
-  pkgs = import <nixpkgs> {};
-
+{pkgs}: let
   mymodule = {
     imports = [
     ];

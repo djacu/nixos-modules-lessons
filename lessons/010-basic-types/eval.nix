@@ -1,13 +1,10 @@
-let
-  pkgs = import <nixpkgs> {};
-  inherit (pkgs) lib;
-in
-  (
-    pkgs.lib.evalModules {
-      modules = [
-        ./options.nix
-        ./config.nix
-      ];
-    }
-  )
-  .config
+{pkgs}:
+(
+  pkgs.lib.evalModules {
+    modules = [
+      ./options.nix
+      ./config.nix
+    ];
+  }
+)
+.config

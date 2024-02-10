@@ -30,19 +30,18 @@
         mkPoetryEnv
         ;
 
-      lessonsLib = import ./lib/lessons.nix {inherit self pkgs lib;};
+      lessonsLib = import ./lib/lessons.nix {inherit pkgs lib;};
 
       site-env = mkPoetryEnv {
         projectDir = self + /site;
         python = pkgs.python311;
       };
 
-      lessonsDocumentation =
-        lessonsLib.generateLessonsDocumentation
-        {
-          lessonsPath = ./lessons;
-          lessonFile = "lesson.md";
-        };
+      lessonsInfo = {
+        lessonsPath = ./lessons;
+        lessonFile = "lesson.md";
+      };
+      lessonsDocumentation = lessonsLib.generateLessonsDocumentation lessonsInfo;
 
       site = pkgs.stdenvNoCC.mkDerivation {
         name = "modules-lessons-site";
