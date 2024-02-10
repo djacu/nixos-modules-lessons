@@ -11,6 +11,14 @@ nav:
       - lessons/001-a-module/lesson.md
     - Types:
       - lessons/010-basic-types/lesson.md
+      - lessons/composite-types/lesson.md
+      - lessons/submodule-types/lesson.md
+    - Misc:
+      - lessons/default-behavior/lesson.md
+      - lessons/merging-attrsof/lesson.md
+      - lessons/merging-listof/lesson.md
+      - lessons/mkif-behavior/lesson.md
+      - lessons/mkoption-attributes/lesson.md
 
 theme:
   name: material
