@@ -4,6 +4,30 @@
   lib,
   ...
 }: rec {
+  /*
+  Creates an attrset where the key is the lesson directory name and the value is the path to the directory.
+
+  # Example
+
+  ```nix
+  getLessons
+  {lessonsPath = ../lessons;}
+  => {
+    "001-a-module" = <nix-store>/lessons/001-a-module;
+    "010-basic-types" = <nix-store>/lessons/010-basic-types;
+    }
+  ```
+
+  # Type
+
+  ```
+  getLessons :: Attrset -> Attrset
+  ```
+
+  # Arguments
+
+  - [lessonsPath] The path to the lessons directory.
+  */
   getLessons = {lessonsPath ? ../lessons, ...}: (
     lib.mapAttrs
     (name: _: lib.path.append lessonsPath name)
