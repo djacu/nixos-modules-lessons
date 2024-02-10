@@ -1,5 +1,4 @@
 {
-  self,
   pkgs,
   lib,
   ...
@@ -174,6 +173,29 @@
   '';
 
   /*
+  Evalates all files in a lesson directory that start with `eval`.
+
+  Returns an attrset with the key as the file name without the extension and the value as the evaluated value.
+
+  This can be used in the `lesson.md` files with a hidden comment and keyword to substitute the evaluated values.
+  */
+  getLessonsEvals = lessonPath: (
+    builtins.listToAttrs
+    (
+      builtins.map
+      (path: {
+        name = "${lib.removeSuffix ".nix" (builtins.baseNameOf path)}";
+        value = lib.generators.toPretty {} (import path {inherit pkgs;});
+      })
+      (
+        builtins.filter
+        (file: lib.hasPrefix "eval" (builtins.baseNameOf file))
+        (lib.filesystem.listFilesRecursive lessonPath)
+      )
+    )
+  );
+
+  /*
   Given a lesson, create the metadata necessary to create the markdown documentation.
   */
   createLessonMetadata = {lessonFile ? "lesson.md", ...}: name: value: let
@@ -181,7 +203,7 @@
     lessonPath = value;
     rawLesson = builtins.readFile (lib.path.append lessonPath lessonFile);
 
-    commentLineMatch = ''(\[//]: # \(.*\..*\))'';
+    commentLineMatch = ''(\[//]: # \(\./.*\))'';
     commentFileMatch = ''\[//]: # \(\./(.*)\)'';
     linesToReplace = multilineMatch commentLineMatch rawLesson;
     filesToSubstitute = (
@@ -207,19 +229,36 @@
       makeFencedCodeBlock
       filesToSubstitute
     );
+
+    evaluations = getLessonsEvals lessonPath;
+    selfLineMatch = ''(\[//]: # \(self.*\))'';
+    selfAttrMatch = ''\[//]: # \(self\.(.*)\)'';
+    selfLinesToReplace = multilineMatch selfLineMatch rawLesson;
+    selfEvaluationToSubstitue =
+      lib.flatten
+      (
+        builtins.map
+        (
+          multilineMatch
+          selfAttrMatch
+        )
+        selfLinesToReplace
+      );
+    selfValueToSubstitute =
+      builtins.map
+      (x: ''
+        ``` nix
+        ${evaluations.${x}}
+        ```
+      '')
+      selfEvaluationToSubstitue;
   in rec {
     outputParentDir = "lessons/" + lessonDir;
     outputFilePath = outputParentDir + "/" + lessonFile;
     subsLesson = (
       builtins.replaceStrings
-      [''[//]: # (evaluatedLesson)'']
-      [
-        ''
-          ```nix
-          ${(lib.generators.toPretty {} evaluatedLesson)}
-          ```
-        ''
-      ]
+      selfLinesToReplace
+      selfValueToSubstitute
       (
         builtins.replaceStrings
         linesToReplace
