@@ -116,6 +116,33 @@
     )
   );
 
+  /*
+  Create a fenced code block with language identifier and file name given a file.
+
+  # Example
+
+  ````nix
+  makeFencedCodeBlock ./eval.nix
+  => ''
+  ``` nix title="eval.nix"
+  let
+    a = 1;
+  in
+    a
+  ```
+  ''
+  ````
+
+  # Type
+
+  ```
+  makeFencedCodeBlock :: Path -> String
+  ```
+
+  # Arguments
+
+  - [path] The file.
+  */
   makeFencedCodeBlock = file: ''
     ``` ${getFileExtension file} title="${builtins.baseNameOf file}"
     ${builtins.readFile file}
