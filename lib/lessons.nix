@@ -149,6 +149,9 @@
     ```
   '';
 
+  /*
+  Given a lesson, create the metadata necessary to create the markdown documentation.
+  */
   createLessonMetadata = {lessonFile ? "lesson.md", ...}: name: value: let
     lessonDir = name;
     lessonPath = value;
@@ -212,12 +215,18 @@
       .config;
   };
 
-  lessonsToMetadata = {lessonsPath ? ../lessons, ...} @ args: (
+  /*
+  Maps over all the lessons and generates metadata.
+  */
+  lessonsToMetadata = args: (
     lib.mapAttrs
     (createLessonMetadata args)
     (getLessons args)
   );
 
+  /*
+  Given a list of lesson metadata attrsets, copy the contents to the nix store.
+  */
   copyLessonsToNixStore = lessons:
     pkgs.runCommand
     "copy-module-lessons"
@@ -243,6 +252,11 @@
       }
     '';
 
+  /*
+  Primary function for building lesson documentation.
+
+  Is used when building the site.
+  */
   generateLessonsDocumentation = args: (
     copyLessonsToNixStore
     (
@@ -251,6 +265,11 @@
     )
   );
 
+  /*
+  Builds the lessons documentation and copies it to the needed location in the mkdocs directory.
+
+  Primary use is for developing with `mkdocs serve`.
+  */
   copyLessonsToSite =
     pkgs.writeShellScriptBin
     "copy-lessons-to-site"
