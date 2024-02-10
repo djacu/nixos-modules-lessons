@@ -1,8 +1,8 @@
 site_name: NixOS Modules Lessons
-site_url: https://module-lessons.nix.xn--q9jyb4c
+site_url: https://nixos-modules.nix.xn--q9jyb4c
 repo_url: https://github.com/djacu/nixos-modules-lessons
 repo_name: djacu/nixos-modules-lessons
-edit_uri: tree/main/site
+edit_uri: tree/main
 
 nav:
   - Home: index.md
@@ -48,6 +48,8 @@ plugins:
   - social:
       cards_layout_options:
         font_family: Roboto
+        title: NixOS Modules Lessons
+        description: A collection fo lessons to teach you about NixOS modules.
 
 markdown_extensions:
   - admonition
