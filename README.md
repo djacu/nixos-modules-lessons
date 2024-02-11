@@ -24,3 +24,15 @@ Please refer to the [CONTRIBUTING](CONTRIBUTING.md) file for guidelines on how t
 ## License
 
 This repository is licensed under the [MIT License](LICENSE.md), fostering open collaboration and knowledge sharing.
+
+## Attribution
+
+Much of content in these lessons is original but could only be attempted after consuming and thanks to the already existing resources out there.
+The lessons here were inspired by or directly lifted content from the following resources:
+
+- The nixpkgs source code:
+  - [modules](https://github.com/NixOS/nixpkgs/blob/master/lib/modules.nix)
+  - [types](https://github.com/NixOS/nixpkgs/blob/master/lib/types.nix)
+- [The original module article on nix.dev](https://nix.dev/tutorials/module-system/module-system.html)
+- [The NixOS Manual](https://nixos.org/manual/nixos/stable/#sec-writing-modules)
+- [The NixOS Wiki](https://nixos.wiki/wiki/NixOS_modules)
