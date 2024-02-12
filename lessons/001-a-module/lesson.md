@@ -102,6 +102,9 @@ Option definitions are generally straight-forward bindings of values to option n
 }
 ```
 
+!!! note
+    Modules do not have to be functions. They can be attrsets as well. The above `config.nix` file is a valid module. Generally, you can write modules that are only option definitions as attrsets.
+
 Note that our option declarations and option definitions do not need to exist in the same file.
 When we evaluate our modules, we can simply include both files.
 As long as every definition has a declaration, we can successfully evaluate our modules.
