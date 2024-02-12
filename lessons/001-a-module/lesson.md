@@ -1,9 +1,17 @@
 # What is a module
 
-In this lesson, we will cover:
+In this lesson, you will learn what a module is and how to define one.
 
-- what a module is
-- ***FIXME***
+## Definition
+
+A *module* is a function that returns an attrset.
+It declares options with types.
+It defines option values.
+When evaluated, it produces a configuration based on the declarations and definitions.
+
+If that does not make a lot of sense, do not worry.
+Keep reading.
+The rest of this lesson will provide clarity.
 
 ## Structure
 
