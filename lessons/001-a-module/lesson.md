@@ -111,3 +111,4 @@ If there is an option definition that has not been declared, the module system w
 
 ### FIXME: Talk about the automatically provided arguments
 
+[option-types-basic]: https://nixos.org/manual/nixos/stable/#sec-option-types-basic

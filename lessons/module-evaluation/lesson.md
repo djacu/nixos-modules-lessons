@@ -36,4 +36,3 @@ one we print when executing the `./run` file.
 The vast majority of nixpkgs is made out of modules, all merged together in the top-level
 `evalModules`.
 
-[option-types-basic]: https://nixos.org/manual/nixos/stable/#sec-option-types-basic
