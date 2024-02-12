@@ -9,6 +9,7 @@ nav:
   - Lessons:
     - Getting Started:
       - lessons/001-a-module/lesson.md
+      - lessons/module-evaluation/lesson.md
     - Types:
       - lessons/010-basic-types/lesson.md
       - lessons/composed-types/lesson.md
