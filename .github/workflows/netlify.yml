@@ -29,7 +29,7 @@ jobs:
 
       - name: Build Site
         run: |
-          nix build .#site
+          nix build -L -vv .#site
           mkdir ./dist
           cp -R ./result/* ./dist/
           chmod -R +w ./dist/
