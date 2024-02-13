@@ -29,7 +29,7 @@
   */
   getLessons = {lessonsPath ? ../lessons, ...}: (
     lib.mapAttrs
-    (name: _: lib.path.append lessonsPath name)
+    (name: _: lessonsPath + "/" + name)
     (
       lib.filterAttrs
       (name: type: type == "directory")
@@ -184,7 +184,7 @@
     (
       builtins.map
       (path: {
-        name = "${lib.removeSuffix ".nix" (builtins.baseNameOf path)}";
+        name = "${builtins.unsafeDiscardStringContext (lib.removeSuffix ".nix" (builtins.baseNameOf path))}";
         value = lib.generators.toPretty {} (import path {inherit pkgs;});
       })
       (
@@ -201,7 +201,7 @@
   createLessonMetadata = {lessonFile ? "lesson.md", ...}: name: value: let
     lessonDir = name;
     lessonPath = value;
-    rawLesson = builtins.readFile (lib.path.append lessonPath lessonFile);
+    rawLesson = builtins.readFile (lessonPath + "/" + lessonFile);
 
     commentLineMatch = ''(\[//]: # \(\./.*\))'';
     commentFileMatch = ''\[//]: # \(\./(.*)\)'';
@@ -209,8 +209,10 @@
     filesToSubstitute = (
       builtins.map
       (
-        lib.path.append
-        lessonPath
+        x:
+          lessonPath
+          + "/"
+          + x
       )
       (
         lib.flatten
@@ -270,8 +272,8 @@
       (
         lib.evalModules {
           modules = [
-            (lib.path.append lessonPath "options.nix")
-            (lib.path.append lessonPath "config.nix")
+            (lessonPath + "/" + "options.nix")
+            (lessonPath + "/" + "config.nix")
           ];
         }
       )
