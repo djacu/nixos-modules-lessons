@@ -1,18 +1,10 @@
-{pkgs}: let
-  mymodule = {
-    imports = [
+{pkgs}:
+(
+  pkgs.lib.evalModules {
+    modules = [
+      ./options.nix
+      ./config.nix
     ];
-    options = {
-    };
-    config = {
-    };
-  };
-in
-  (
-    pkgs.lib.evalModules {
-      modules = [
-        mymodule
-      ];
-    }
-  )
-  .config
+  }
+)
+.config

@@ -1,38 +1,48 @@
 # Module Evaluation
 
-In the [eval][eval] file, we have declared an attrset called `mymodule` which is composed of 3
-fields: `imports`, `options` and `config`. This is a module with default values for those fields.
-You can omit any of those fields and they will use those same default values.
+Let us look at a basic, trivial example.
+We will use the `options.nix` and `config.nix` from the previous lesson.
+
+In the `options.nix` file, we have a single option, `name`, that is of type `str`.
+
+[//]: # (./options.nix)
+
+In the `config.nix` file, we have defined a value for `name`.
+
+[//]: # (./config.nix)
+
+What do we do now?
+
+How do we combine these two modules together?
+
+With a simple function, `evalModules`.
+
+``` nix
+pkgs.lib.evalModules {
+  modules = [
+    ./options.nix
+    ./config.nix
+  ];
+}
+```
+
+That is it.
+Provide the modules you want to evaluate in a list to the `modules` attribute.
+`evalModules` will take take all the modules provided and intelligently merge them together.
+
+If we were to run that, we would get a big messy output.
+The result is a big attrset with several attributes.
+For now, the attribute we care about is `config`.
+
+In the `eval.nix` file, we take the code from above and get the `config` attribute from the evaluation.
 
 [//]: # (./eval.nix)
 
-If you execute the run file (`./run`), you will see printed the empty JSON object `{}`.
+In the `run.sh` file, we evaluate the `eval.nix` file and have it print out a nicely formatted version of the configuration.
 
-[eval]: ./eval.nix
+[//]: # (./run.sh)
 
-## Module Fields
+If you execute the run file (`./run.sh`), you should see an output that matches what we have configured.
 
-The `options` field lets you define variables that can be used in the `config` section.
-
-The `config` field assigns values to options defined in other modules. We call this using an option.
-
-The `imports` field lets you import other modules from a module.
-
-We will see what goes in those fields in later lessons.
-
-## Evaluating Modules
-
-In the [eval][eval] file, we use a function called `evalModules`. This function takes an attrset as
-argument which can contain the field named `modules`. In there, we can put as many module as we
-want.
-
-`evalModules` will then merge all `imports`, `options` and `config` fields of all given modules
-following some rules we will see in the next lessons. It then produces an attrset whose only
-interesting field - the result of merging all modules - is found in the `config` field. This is the
-one we print when executing the `./run` file.
-
-## Nixpkgs
-
-The vast majority of nixpkgs is made out of modules, all merged together in the top-level
-`evalModules`.
+[//]: # (self.eval)
 
