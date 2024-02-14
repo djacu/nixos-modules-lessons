@@ -8,10 +8,10 @@ nav:
   - Home: index.md
   - Lessons:
     - Getting Started:
-      - lessons/001-a-module/lesson.md
+      - lessons/what-is-a-module/lesson.md
       - lessons/module-evaluation/lesson.md
     - Types:
-      - lessons/010-basic-types/lesson.md
+      - lessons/basic-types/lesson.md
       - lessons/composed-types/lesson.md
       - lessons/submodule-types/lesson.md
     - Misc:
