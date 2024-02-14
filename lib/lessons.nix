@@ -208,12 +208,7 @@
     linesToReplace = multilineMatch commentLineMatch rawLesson;
     filesToSubstitute = (
       builtins.map
-      (
-        x:
-          lessonPath
-          + "/"
-          + x
-      )
+      (x: lessonPath + "/" + x)
       (
         lib.flatten
         (
@@ -268,16 +263,6 @@
         rawLesson
       )
     );
-    evaluatedLesson =
-      (
-        lib.evalModules {
-          modules = [
-            (lessonPath + "/" + "options.nix")
-            (lessonPath + "/" + "config.nix")
-          ];
-        }
-      )
-      .config;
   };
 
   /*
