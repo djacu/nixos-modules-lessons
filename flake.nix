@@ -36,7 +36,10 @@
       site-env = mkPoetryEnv {
         projectDir = fileset.toSource {
           root = ./site;
-          fileset = ./site;
+          fileset = fileset.unions [
+            ./site/pyproject.toml
+            ./site/poetry.lock
+          ];
         };
         python = pkgs.python311;
       };
@@ -56,7 +59,13 @@
         name = "modules-lessons-site";
         src = fileset.toSource {
           root = ./site;
-          fileset = ./site;
+          fileset =
+            fileset.difference
+            ./site
+            (fileset.unions [
+              ./site/pyproject.toml
+              ./site/poetry.lock
+            ]);
         };
         nativeBuildInputs = [site-env];
 
