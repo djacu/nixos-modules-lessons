@@ -25,6 +25,7 @@
     flake-utils.lib.eachSystem ["x86_64-linux"] (system: let
       pkgs = nixpkgs.legacyPackages.${system};
       lib = pkgs.lib;
+      inherit (lib) fileset;
       inherit
         (poetry2nix.lib.mkPoetry2Nix {inherit pkgs;})
         mkPoetryEnv
@@ -33,19 +34,39 @@
       lessonsLib = import ./lib/lessons.nix {inherit pkgs lib;};
 
       site-env = mkPoetryEnv {
-        projectDir = self + /site;
+        projectDir = fileset.toSource {
+          root = ./site;
+          fileset = fileset.unions [
+            ./site/pyproject.toml
+            ./site/poetry.lock
+          ];
+        };
         python = pkgs.python311;
       };
 
       lessonsInfo = {
-        lessonsPath = ./lessons;
+        lessonsPath = (
+          fileset.toSource {
+            root = ./lessons;
+            fileset = ./lessons;
+          }
+        );
         lessonFile = "lesson.md";
       };
       lessonsDocumentation = lessonsLib.generateLessonsDocumentation lessonsInfo;
 
       site = pkgs.stdenvNoCC.mkDerivation {
         name = "modules-lessons-site";
-        src = self + "/site";
+        src = fileset.toSource {
+          root = ./site;
+          fileset =
+            fileset.difference
+            ./site
+            (fileset.unions [
+              ./site/pyproject.toml
+              ./site/poetry.lock
+            ]);
+        };
         nativeBuildInputs = [site-env];
 
         buildPhase = ''
