@@ -15,6 +15,7 @@ nav:
       - lessons/composed-types/lesson.md
       - lessons/submodule-types/lesson.md
     - Misc:
+      - lessons/function-arguments/lesson.md
       - lessons/default-behavior/lesson.md
       - lessons/merging-attrsof/lesson.md
       - lessons/merging-listof/lesson.md
