@@ -1,0 +1,67 @@
+:root {
+  --color-style-dark_teal: #263238;
+  --color-style-white: #FFFFFF;
+  --color-style-black: #000000;
+  --color-style-red: #FF5370;
+  --color-style-orange: #F78C6C;
+  --color-style-yellow: #FFCB6B;
+  --color-style-green: #C3E88D;
+  --color-style-cyan: #89DDFF;
+  --color-style-blue: #82AAFF;
+  --color-style-paleblue: #B2CCD6;
+  --color-style-purple: #C792EA;
+  --color-style-brown: #C17E70;
+  --color-style-pink: #F07178;
+  --color-style-violet: #BB80B3;
+  --color-style-foreground: #EEFFFF;
+  --color-style-faded: #546E7A;
+}
+
+[data-md-color-scheme="slate"] {
+
+  /*
+  --md-hue: 210; 
+  */
+  .highlight {
+    .k {
+      color: var(--color-style-violet);
+    }
+    .kc {
+      color: var(--color-style-cyan);
+    }
+    .kd {
+      color: var(--color-style-violet);
+    }
+    .kn {
+      color: var(--color-style-cyan);
+      font-style: italic;
+    }
+    .kp {
+      color: var(--color-style-cyan);
+    }
+    .kt {
+      color: var(--color-style-violet);
+    }
+
+    .n {
+      color: var(--color-style-foreground);
+    }
+  }
+  --md-code-hl-comment-color: var(--color-style-faded);
+  /*--md-code-hl-keyword-color: var(--color-style-violet);*/
+  .highlight :is(.nb, .no) {
+    color: #5CCFE6;
+  }
+
+  --md-code-hl-number-color: var(--color-style-orange);
+
+  --md-code-hl-string-color: var(--color-style-green); 
+  --md-code-hl-special-color: var(--color-style-faded);
+  .highlight .ss {
+    color: var(--color-style-violet);
+  }
+
+  --md-code-hl-operator-color: var(--color-style-cyan);
+  --md-code-hl-punctuation-color: var(--color-style-cyan);
+
+}
