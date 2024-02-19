@@ -8,8 +8,7 @@ nav:
   - Home: index.md
   - Lessons:
     - Getting Started:
-      - lessons/what-is-a-module/lesson.md
-      - lessons/module-evaluation/lesson.md
+      - lessons/a-basic-module/lesson.md
     - Types:
       - lessons/basic-types/lesson.md
       - lessons/composed-types/lesson.md
@@ -21,6 +20,9 @@ nav:
       - lessons/merging-listof/lesson.md
       - lessons/mkif-behavior/lesson.md
       - lessons/mkoption-attributes/lesson.md
+    - Old:
+      - lessons/what-is-a-module/lesson.md
+      - lessons/module-evaluation/lesson.md
 
 theme:
   name: material
