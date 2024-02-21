@@ -38,7 +38,7 @@ It will use the final configuration values of all our input options and create a
     which takes into account all modules passed to `evalModules` and their `imports`.
     - The `config` *attribute* of a module exposes that particular module’s option values to the module system for evaluation.
 
-So now we just set values for `name`, `title`, and `origin` in `confix.nix` like we have done before.
+So now we just set values for `name`, `title`, and `origin` in `config.nix` like we have done before.
 
 [//]: # (./config.nix)
 
