@@ -183,18 +183,24 @@
     builtins.listToAttrs
     (
       builtins.map
-      (path: {
-        name = "${builtins.unsafeDiscardStringContext (lib.removeSuffix ".nix" (builtins.baseNameOf path))}";
+      (path: let
+        filename = builtins.baseNameOf path;
+        parentDir = builtins.baseNameOf (lib.removeSuffix filename path);
+        name = "${builtins.unsafeDiscardStringContext (lib.removeSuffix ".nix" filename)}";
+      in {
+        inherit name;
         value =
           builtins.readFile
           (
             pkgs.runCommand
-            "run"
+            "run-${parentDir}-${name}"
             {buildInputs = [pkgs.jq];}
             ''
               set -euo pipefail
               exec > $out
+              echo '``` json'
               echo ${lib.escapeShellArg (builtins.toJSON (import path {inherit pkgs;}))} | jq -r
+              echo '```'
             ''
           );
       })
@@ -254,11 +260,7 @@
       );
     selfValueToSubstitute =
       builtins.map
-      (x: ''
-        ``` nix
-        ${evaluations.${x}}
-        ```
-      '')
+      (x: evaluations.${x})
       selfEvaluationToSubstitue;
   in rec {
     outputParentDir = "lessons/" + lessonDir;
