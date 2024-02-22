@@ -185,7 +185,18 @@
       builtins.map
       (path: {
         name = "${builtins.unsafeDiscardStringContext (lib.removeSuffix ".nix" (builtins.baseNameOf path))}";
-        value = lib.generators.toPretty {} (import path {inherit pkgs;});
+        value =
+          builtins.readFile
+          (
+            pkgs.runCommand
+            "run"
+            {buildInputs = [pkgs.jq];}
+            ''
+              set -euo pipefail
+              exec > $out
+              echo ${lib.escapeShellArg (builtins.toJSON (import path {inherit pkgs;}))} | jq -r
+            ''
+          );
       })
       (
         builtins.filter
@@ -252,17 +263,10 @@
   in rec {
     outputParentDir = "lessons/" + lessonDir;
     outputFilePath = outputParentDir + "/" + lessonFile;
-    subsLesson = (
-      builtins.replaceStrings
-      selfLinesToReplace
-      selfValueToSubstitute
-      (
-        builtins.replaceStrings
-        linesToReplace
-        textToSubstitute
-        rawLesson
-      )
-    );
+    subsLesson = lib.pipe rawLesson [
+      (builtins.replaceStrings linesToReplace textToSubstitute)
+      (builtins.replaceStrings selfLinesToReplace selfValueToSubstitute)
+    ];
   };
 
   /*
