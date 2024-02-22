@@ -183,9 +183,26 @@
     builtins.listToAttrs
     (
       builtins.map
-      (path: {
-        name = "${builtins.unsafeDiscardStringContext (lib.removeSuffix ".nix" (builtins.baseNameOf path))}";
-        value = lib.generators.toPretty {} (import path {inherit pkgs;});
+      (path: let
+        filename = builtins.baseNameOf path;
+        parentDir = builtins.baseNameOf (lib.removeSuffix filename path);
+        name = "${builtins.unsafeDiscardStringContext (lib.removeSuffix ".nix" filename)}";
+      in {
+        inherit name;
+        value =
+          builtins.readFile
+          (
+            pkgs.runCommand
+            "run-${parentDir}-${name}"
+            {buildInputs = [pkgs.jq];}
+            ''
+              set -euo pipefail
+              exec > $out
+              echo '``` json'
+              echo ${lib.escapeShellArg (builtins.toJSON (import path {inherit pkgs;}))} | jq -r
+              echo '```'
+            ''
+          );
       })
       (
         builtins.filter
@@ -243,26 +260,15 @@
       );
     selfValueToSubstitute =
       builtins.map
-      (x: ''
-        ``` nix
-        ${evaluations.${x}}
-        ```
-      '')
+      (x: evaluations.${x})
       selfEvaluationToSubstitue;
   in rec {
     outputParentDir = "lessons/" + lessonDir;
     outputFilePath = outputParentDir + "/" + lessonFile;
-    subsLesson = (
-      builtins.replaceStrings
-      selfLinesToReplace
-      selfValueToSubstitute
-      (
-        builtins.replaceStrings
-        linesToReplace
-        textToSubstitute
-        rawLesson
-      )
-    );
+    subsLesson = lib.pipe rawLesson [
+      (builtins.replaceStrings linesToReplace textToSubstitute)
+      (builtins.replaceStrings selfLinesToReplace selfValueToSubstitute)
+    ];
   };
 
   /*
