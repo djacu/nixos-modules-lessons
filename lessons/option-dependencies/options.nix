@@ -17,11 +17,14 @@ in {
     };
     greeting = lib.mkOption {
       type = lib.types.str;
-      default = ''
-        Hello
-        My name is ${cfg.name}.
-        I am a ${cfg.title}.
-        I am from ${cfg.origin}.'';
     };
+  };
+
+  config = {
+    greeting = ''
+      Hello
+      My name is ${cfg.name}.
+      I am a ${cfg.title}.
+      I am from ${cfg.origin}.'';
   };
 }
