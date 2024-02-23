@@ -10,6 +10,7 @@ nav:
     - Getting Started:
       - lessons/a-basic-module/lesson.md
       - lessons/option-dependencies/lesson.md
+      - lessons/splitting-modules/lesson.md
     - Types:
       - lessons/basic-types/lesson.md
       - lessons/composed-types/lesson.md
