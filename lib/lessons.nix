@@ -262,12 +262,40 @@
       builtins.map
       (x: evaluations.${x})
       selfEvaluationToSubstitue;
+
+    buildLineMatch = ''(\[//]: # \(build .*\))'';
+    buildFileMatch = ''\[//]: # \(build (.*)\)'';
+    buildLinesToReplace = multilineMatch buildLineMatch rawLesson;
+    buildFilesToSubstitue = (
+      builtins.map
+      (x: lessonPath + "/" + x)
+      (
+        lib.flatten
+        (
+          builtins.map
+          (
+            multilineMatch
+            buildFileMatch
+          )
+          buildLinesToReplace
+        )
+      )
+    );
+    buildValueToSubstitute =
+      builtins.map
+      (
+        path: ''
+          ${builtins.readFile (import path {inherit pkgs;}).outPath}
+        ''
+      )
+      buildFilesToSubstitue;
   in rec {
     outputParentDir = "lessons/" + lessonDir;
     outputFilePath = outputParentDir + "/" + lessonFile;
     subsLesson = lib.pipe rawLesson [
       (builtins.replaceStrings linesToReplace textToSubstitute)
       (builtins.replaceStrings selfLinesToReplace selfValueToSubstitute)
+      (builtins.replaceStrings buildLinesToReplace buildValueToSubstitute)
     ];
   };
 

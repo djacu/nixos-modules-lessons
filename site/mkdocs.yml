@@ -13,6 +13,7 @@ nav:
       - lessons/splitting-modules/lesson.md
     - mkOption:
       - lessons/default-values/lesson.md
+      - lessons/option-documentation/lesson.md
     - Types:
       - lessons/basic-types/lesson.md
       - lessons/composed-types/lesson.md
