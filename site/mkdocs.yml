@@ -14,6 +14,7 @@ nav:
     - mkOption:
       - lessons/default-values/lesson.md
       - lessons/option-documentation/lesson.md
+      - lessons/documentation-functions/lesson.md
     - Types:
       - lessons/basic-types/lesson.md
       - lessons/composed-types/lesson.md
