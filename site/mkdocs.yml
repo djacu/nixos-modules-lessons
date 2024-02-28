@@ -11,6 +11,7 @@ nav:
       - lessons/a-basic-module/lesson.md
       - lessons/option-dependencies/lesson.md
       - lessons/splitting-modules/lesson.md
+      - lessons/extra-arguments/lesson.md
     - mkOption:
       - lessons/default-values/lesson.md
       - lessons/option-documentation/lesson.md
