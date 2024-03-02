@@ -9,10 +9,7 @@ What is a module?
 
 The format is like so:
 
-```nix title="useless.nix"
-{...}: {
-}
-```
+[//]: # (./useless.nix)
 
 This, as the filename suggests, is completely useless.
 It takes no arguments and returns an empty attrset.

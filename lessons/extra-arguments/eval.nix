@@ -1,8 +1,8 @@
 {
   nixpkgs ?
     builtins.fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/tarball/nixos-23.11";
-      sha256 = "sha256:1vf7w61dna31ajbkwkmdxf1mizp55ym31w163l017ir8df5cgx3v";
+      url = "https://github.com/NixOS/nixpkgs/tarball/aa94fc78b0a49ed2a4a69b6f5082a1b286dd392d";
+      sha256 = "1gkm7r07aqiyfgr32bzjmhvgsd543m2g3m43janmb6z1hz17ks1n";
     },
   pkgs ? import nixpkgs {},
 }:
