@@ -33,6 +33,8 @@ nav:
 
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/favicon.svg
   features:
     - content.action.view
     - content.code.copy
