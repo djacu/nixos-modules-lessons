@@ -21,8 +21,7 @@ nav:
       - lessons/basic-types/lesson.md
       - lessons/composed-types/lesson.md
       - lessons/submodule-types/lesson.md
-    - Misc:
-      - lessons/function-arguments/lesson.md
+    - Future:
       - lessons/default-behavior/lesson.md
       - lessons/merging-attrsof/lesson.md
       - lessons/merging-listof/lesson.md
@@ -31,6 +30,7 @@ nav:
     - Old:
       - lessons/what-is-a-module/lesson.md
       - lessons/module-evaluation/lesson.md
+      - lessons/function-arguments/lesson.md
 
 theme:
   name: material
