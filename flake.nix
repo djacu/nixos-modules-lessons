@@ -80,6 +80,14 @@
           cp -R dist/* $out/
         '';
       };
+
+      slides =
+        import
+        ./slides
+        {
+          inherit pkgs;
+          parentPath = ./slides;
+        };
     in {
       devShells = {
         poetry = pkgs.mkShell {
@@ -96,8 +104,7 @@
         };
       };
       packages =
-        {
-        }
+        slides
         // {
           inherit
             site
@@ -113,7 +120,7 @@
       };
 
       checks =
-        {}
+        slides
         // {
           inherit
             site
