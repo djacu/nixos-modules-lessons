@@ -21,6 +21,8 @@ nav:
       - lessons/basic-types/lesson.md
       - lessons/composed-types/lesson.md
       - lessons/submodule-types/lesson.md
+    - Misc:
+      - lessons/option-priorities/lesson.md
     - Future:
       - lessons/default-behavior/lesson.md
       - lessons/merging-attrsof/lesson.md
