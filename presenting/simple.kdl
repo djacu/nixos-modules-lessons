@@ -1,0 +1,7 @@
+layout {
+  tab_template name="simple" {
+    pane
+  }
+
+  simple
+}

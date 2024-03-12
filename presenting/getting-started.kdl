@@ -1,0 +1,17 @@
+layout {
+  tab_template name="default" {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+  }
+
+  default focus=true name="A basic module" cwd="./lessons/a-basic-module/"
+  default name="Option dependencies" cwd="./lessons/option-dependencies/"
+  default name="Splitting modules" cwd="./lessons/splitting-modules/"
+  default name="Options Argument" cwd="./lessons/options-argument/"
+  default name="Extra arguments" cwd="./lessons/extra-arguments/"
+}

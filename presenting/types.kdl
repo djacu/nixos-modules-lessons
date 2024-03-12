@@ -1,0 +1,15 @@
+layout {
+  tab_template name="default" {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+  }
+
+  default focus=true name="Basic types" cwd="./lessons/basic-types/"
+  default name="Composed Types" cwd="./lessons/composed-types/"
+  default name="Submodule Type" cwd="./lessons/submodule-types/"
+}

@@ -1,0 +1,15 @@
+layout {
+  tab_template name="default" {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+  }
+
+  default focus=true name="Default values" cwd="./lessons/default-values/"
+  default name="Option documentation" cwd="./lessons/option-documentation/"
+  default name="Documentation functions" cwd="./lessons/documentation-functions/"
+}

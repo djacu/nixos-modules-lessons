@@ -6,6 +6,8 @@ theme: beige
 
 Daniel Baker (@djacu)
 
+https://socal-nug.com/
+
 ---
 
 # Shout Out
@@ -28,3 +30,5 @@ https://nixos-modules.nix.みんな/
 https://nixos-modules.nix.xn--q9jyb4c/
 
 https://github.com/djacu/nixos-modules-lessons/
+
+https://nixmodules.dev/

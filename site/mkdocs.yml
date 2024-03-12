@@ -13,7 +13,7 @@ nav:
       - lessons/splitting-modules/lesson.md
       - lessons/options-argument/lesson.md
       - lessons/extra-arguments/lesson.md
-    - mkOption:
+    - mkOption Attributes:
       - lessons/default-values/lesson.md
       - lessons/option-documentation/lesson.md
       - lessons/documentation-functions/lesson.md
